@@ -140,7 +140,7 @@
             this.Controls.Add(this.tbx_word);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "广告发极限词检测";
+            this.Text = "广告法极限词检测";
             this.ResumeLayout(false);
             this.PerformLayout();
 

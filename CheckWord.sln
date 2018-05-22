@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckWord", "CheckWord\CheckWord.csproj", "{D7F92D49-FD2B-49D3-B1F6-A031C38D2C37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7F92D49-FD2B-49D3-B1F6-A031C38D2C37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F92D49-FD2B-49D3-B1F6-A031C38D2C37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F92D49-FD2B-49D3-B1F6-A031C38D2C37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F92D49-FD2B-49D3-B1F6-A031C38D2C37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFE6206E-E449-4C63-8F38-D2A22E4AC349}
+	EndGlobalSection
+EndGlobal

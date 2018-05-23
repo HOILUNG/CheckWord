@@ -27,7 +27,7 @@ namespace CheckWord
             
             var list = tbx_url.Lines.Where(m=>m.Contains("http:")).ToList();
 
-            var word = tbx_word.Text.Split(new[] { "、", ",", "(", ")","（","）", "|", " ", "”", "“", "。","：", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(m=>m.Trim()).Distinct();
+            var word = tbx_word.Text.Split(new[] { "、", ",", "(", ")","（","）", "|", " ", "”", "“", "。","：", "/","-", "—", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).OrderByDescending(m=>m.Length).Select(m=>m.Trim()).Distinct();
 
 
             progressBar1.Maximum = list.Count;

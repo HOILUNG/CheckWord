@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbx_word = new System.Windows.Forms.TextBox();
             this.tbx_url = new System.Windows.Forms.TextBox();
             this.tbx_result = new System.Windows.Forms.TextBox();
@@ -37,6 +38,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btn_clear = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btn_cp_result = new System.Windows.Forms.Button();
+            this.btn_cp_url = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // tbx_word
@@ -124,11 +129,49 @@
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(908, 61);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "清空网址";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btn_cp_result
+            // 
+            this.btn_cp_result.Location = new System.Drawing.Point(908, 369);
+            this.btn_cp_result.Name = "btn_cp_result";
+            this.btn_cp_result.Size = new System.Drawing.Size(75, 23);
+            this.btn_cp_result.TabIndex = 10;
+            this.btn_cp_result.Text = "复制结果";
+            this.btn_cp_result.UseVisualStyleBackColor = true;
+            this.btn_cp_result.Click += new System.EventHandler(this.btn_cp_result_Click);
+            // 
+            // btn_cp_url
+            // 
+            this.btn_cp_url.Location = new System.Drawing.Point(908, 91);
+            this.btn_cp_url.Name = "btn_cp_url";
+            this.btn_cp_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_cp_url.TabIndex = 11;
+            this.btn_cp_url.Text = "复制网址";
+            this.btn_cp_url.UseVisualStyleBackColor = true;
+            this.btn_cp_url.Click += new System.EventHandler(this.btn_cp_url_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "提示";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 602);
+            this.Controls.Add(this.btn_cp_url);
+            this.Controls.Add(this.btn_cp_result);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
@@ -138,9 +181,11 @@
             this.Controls.Add(this.tbx_result);
             this.Controls.Add(this.tbx_url);
             this.Controls.Add(this.tbx_word);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "广告法极限词检测";
+            this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +202,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_cp_result;
+        private System.Windows.Forms.Button btn_cp_url;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

@@ -16,6 +16,8 @@ namespace CheckWord
         {
             InitializeComponent();
             tbx_word.Text = Properties.Resources.String1.Replace("、","\r\n") ;
+            this.Text = string.Format("{0} {1}", this.ProductName, this.ProductVersion);
+            
             
         }
 
@@ -23,9 +25,16 @@ namespace CheckWord
         private async void button1_Click(object sender, EventArgs e)
         {
             
-            
-            
             var list = tbx_url.Lines.Where(m=>m.Contains("http:")).ToList();
+            if(list.Count<1)
+            {
+                toolTip1.Show("需要输入完整网址请参考实例！（每行一条）", tbx_url);
+                return;
+            }else if(tbx_word.Text.Trim().Length<2)
+            {
+                toolTip1.Show("需要填写词汇列表！（每行一条）", tbx_word);
+                return;
+            }
 
             var word = tbx_word.Text.Split(new[] { "、", ",", "(", ")","（","）", "|", " ", "”", "“", "。","：", "/","-", "—", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).OrderByDescending(m=>m.Length).Select(m=>m.Trim()).Distinct();
 
@@ -159,6 +168,23 @@ namespace CheckWord
         private void btn_clear_Click(object sender, EventArgs e)
         {
             tbx_result.Text = string.Empty;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tbx_url.Text = string.Empty;
+        }
+
+        private void btn_cp_url_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(tbx_url.Text);
+            toolTip1.Show("复制成功!", btn_cp_url);
+        }
+
+        private void btn_cp_result_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(tbx_result.Text);
+            toolTip1.Show("复制成功!",btn_cp_result);
         }
     }
 }

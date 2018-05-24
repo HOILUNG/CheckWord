@@ -168,12 +168,12 @@ namespace CheckWord
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            tbx_result.Text = string.Empty;
+            tbx_result.ResetText();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tbx_url.Text = string.Empty;
+            tbx_url.ResetText();
         }
 
         private void btn_cp_url_Click(object sender, EventArgs e)

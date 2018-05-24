@@ -45,6 +45,8 @@
             this.btn_link = new System.Windows.Forms.Button();
             this.btn_link2 = new System.Windows.Forms.Button();
             this.btn_repeat = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbx_word
@@ -53,23 +55,23 @@
             this.tbx_word.Multiline = true;
             this.tbx_word.Name = "tbx_word";
             this.tbx_word.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbx_word.Size = new System.Drawing.Size(275, 541);
+            this.tbx_word.Size = new System.Drawing.Size(275, 518);
             this.tbx_word.TabIndex = 7;
             this.tbx_word.WordWrap = false;
             // 
             // tbx_url
             // 
-            this.tbx_url.Location = new System.Drawing.Point(324, 99);
+            this.tbx_url.Location = new System.Drawing.Point(295, 99);
             this.tbx_url.Multiline = true;
             this.tbx_url.Name = "tbx_url";
             this.tbx_url.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbx_url.Size = new System.Drawing.Size(561, 223);
+            this.tbx_url.Size = new System.Drawing.Size(561, 200);
             this.tbx_url.TabIndex = 3;
             this.tbx_url.WordWrap = false;
             // 
             // tbx_result
             // 
-            this.tbx_result.Location = new System.Drawing.Point(324, 369);
+            this.tbx_result.Location = new System.Drawing.Point(295, 346);
             this.tbx_result.Multiline = true;
             this.tbx_result.Name = "tbx_result";
             this.tbx_result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -89,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(322, 84);
+            this.label2.Location = new System.Drawing.Point(293, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(437, 12);
             this.label2.TabIndex = 4;
@@ -98,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(322, 354);
+            this.label3.Location = new System.Drawing.Point(293, 331);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(239, 12);
             this.label3.TabIndex = 5;
@@ -107,7 +109,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Green;
-            this.button1.Location = new System.Drawing.Point(908, 128);
+            this.button1.Location = new System.Drawing.Point(879, 128);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -117,7 +119,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(324, 328);
+            this.progressBar1.Location = new System.Drawing.Point(295, 305);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(559, 23);
             this.progressBar1.Step = 1;
@@ -125,7 +127,8 @@
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(908, 369);
+            this.btn_clear.ForeColor = System.Drawing.Color.Red;
+            this.btn_clear.Location = new System.Drawing.Point(879, 375);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(75, 23);
             this.btn_clear.TabIndex = 8;
@@ -135,7 +138,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(908, 186);
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.Location = new System.Drawing.Point(879, 186);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 9;
@@ -145,7 +149,8 @@
             // 
             // btn_cp_result
             // 
-            this.btn_cp_result.Location = new System.Drawing.Point(908, 401);
+            this.btn_cp_result.ForeColor = System.Drawing.Color.Green;
+            this.btn_cp_result.Location = new System.Drawing.Point(879, 346);
             this.btn_cp_result.Name = "btn_cp_result";
             this.btn_cp_result.Size = new System.Drawing.Size(75, 23);
             this.btn_cp_result.TabIndex = 6;
@@ -155,7 +160,8 @@
             // 
             // btn_cp_url
             // 
-            this.btn_cp_url.Location = new System.Drawing.Point(908, 157);
+            this.btn_cp_url.ForeColor = System.Drawing.Color.Green;
+            this.btn_cp_url.Location = new System.Drawing.Point(879, 157);
             this.btn_cp_url.Name = "btn_cp_url";
             this.btn_cp_url.Size = new System.Drawing.Size(75, 23);
             this.btn_cp_url.TabIndex = 11;
@@ -165,7 +171,7 @@
             // 
             // tbx_domain
             // 
-            this.tbx_domain.Location = new System.Drawing.Point(324, 46);
+            this.tbx_domain.Location = new System.Drawing.Point(295, 46);
             this.tbx_domain.Name = "tbx_domain";
             this.tbx_domain.Size = new System.Drawing.Size(559, 21);
             this.tbx_domain.TabIndex = 1;
@@ -174,7 +180,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(322, 31);
+            this.label4.Location = new System.Drawing.Point(293, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(323, 12);
             this.label4.TabIndex = 13;
@@ -183,7 +189,7 @@
             // btn_link
             // 
             this.btn_link.ForeColor = System.Drawing.Color.Green;
-            this.btn_link.Location = new System.Drawing.Point(908, 46);
+            this.btn_link.Location = new System.Drawing.Point(879, 46);
             this.btn_link.Name = "btn_link";
             this.btn_link.Size = new System.Drawing.Size(75, 23);
             this.btn_link.TabIndex = 2;
@@ -193,8 +199,8 @@
             // 
             // btn_link2
             // 
-            this.btn_link2.ForeColor = System.Drawing.Color.Goldenrod;
-            this.btn_link2.Location = new System.Drawing.Point(911, 245);
+            this.btn_link2.ForeColor = System.Drawing.Color.Red;
+            this.btn_link2.Location = new System.Drawing.Point(882, 245);
             this.btn_link2.Name = "btn_link2";
             this.btn_link2.Size = new System.Drawing.Size(75, 23);
             this.btn_link2.TabIndex = 14;
@@ -204,7 +210,8 @@
             // 
             // btn_repeat
             // 
-            this.btn_repeat.Location = new System.Drawing.Point(908, 97);
+            this.btn_repeat.ForeColor = System.Drawing.Color.Green;
+            this.btn_repeat.Location = new System.Drawing.Point(879, 97);
             this.btn_repeat.Name = "btn_repeat";
             this.btn_repeat.Size = new System.Drawing.Size(75, 23);
             this.btn_repeat.TabIndex = 15;
@@ -212,11 +219,32 @@
             this.btn_repeat.UseVisualStyleBackColor = true;
             this.btn_repeat.Click += new System.EventHandler(this.btn_repeat_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(10, 552);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(557, 12);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "操作流程：请参考界面顺序，从左往右，从上到下；操作选项：绿色按钮为常用操作，红色为慎用操作。";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 580);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(701, 12);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "常见问题：获取列表失败，请重试或用浏览器打开网站是否正常；部分服务器对网站访问频率有限制，同一IP请勿频繁或间隔访问。";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 602);
+            this.ClientSize = new System.Drawing.Size(973, 602);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btn_repeat);
             this.Controls.Add(this.btn_link2);
             this.Controls.Add(this.btn_link);
@@ -263,6 +291,8 @@
         private System.Windows.Forms.Button btn_link;
         private System.Windows.Forms.Button btn_link2;
         private System.Windows.Forms.Button btn_repeat;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

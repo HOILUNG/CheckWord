@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CheckWord
 {
     public partial class Form1 : Form
@@ -27,12 +28,12 @@ namespace CheckWord
             
             var list = tbx_url.Lines.Where(m=>m.Contains("http:")).ToList();
             if(list.Count<1)
-            {
-                toolTip1.Show("需要输入完整网址请参考实例！（每行一条）", tbx_url);
+            {                
+                tbx_url.ShowToolTip("需要输入完整网址请参考实例！（每行一条）", "提示", ToolTipIcon.Info);
                 return;
             }else if(tbx_word.Text.Trim().Length<2)
-            {
-                toolTip1.Show("需要填写词汇列表！（每行一条）", tbx_word);
+            {                
+                tbx_word.ShowToolTip("需要填写词汇列表！（每行一条）", "提示", ToolTipIcon.Info);
                 return;
             }
 
@@ -75,7 +76,7 @@ namespace CheckWord
                     System.IO.File.AppendAllText("log.txt", ex.Message);
                 }
             }
-            MessageBox.Show("全部检测完毕");
+            MessageBox.Show("全部检测完毕,列表数量："+tbx_result.Lines.Length);
             
 
         }
@@ -178,13 +179,144 @@ namespace CheckWord
         private void btn_cp_url_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(tbx_url.Text);
-            toolTip1.Show("复制成功!", btn_cp_url);
+            tbx_url.ShowToolTip("复制成功", "提示", ToolTipIcon.Info);
         }
 
         private void btn_cp_result_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(tbx_result.Text);
-            toolTip1.Show("复制成功!",btn_cp_result);
+            tbx_result.ShowToolTip("复制成功", "提示", ToolTipIcon.Info);            
+        }
+
+        private async void btn_link_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(tbx_domain.Text.IndexOf("http")<0 || tbx_domain.Text.IndexOf(".")<0 || tbx_domain.Text.IndexOf(":") < 0)
+                {
+                    
+                    tbx_domain.ShowToolTip("请输入正确的网站地址","提示",ToolTipIcon.Warning);
+                    return;
+                }
+                var domain = new Uri(tbx_domain.Text);
+
+                await GetUrlLink(domain);
+                MessageBox.Show("获取网站链接完毕,列表数量：" + tbx_url.Lines.Length);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);                                  
+            }
+        }
+
+        private async Task GetUrlLink(Uri domain)
+        {
+            
+            var html = await GetHtml(domain.ToString());
+            if(string.IsNullOrEmpty(html))
+            {
+                tbx_domain.ShowToolTip("获取网站内容失败，请检测网站或重试", "提示", ToolTipIcon.Warning);
+                return;
+            }
+            var htmldoc = new HtmlAgilityPack.HtmlDocument();
+            htmldoc.LoadHtml(html);
+            var nodes = htmldoc.DocumentNode.SelectNodes("//a[not(contains(@href,'#')) and not(contains(@href,'javascript:'))  and not(contains(@href,'tel:'))  and not(contains(@href,'mail:')) and @href]");
+            if (nodes != null)
+            {
+                foreach (var node in nodes)
+                {
+                    var href = node.GetAttributeValue("href", "");
+                    if (href == string.Empty)
+                        continue;
+                    //if (href.Contains("miibeian.gov.cn"))
+                    //    continue;
+                    //if (href.Contains("beian.gov.cn"))
+                    //    continue;
+                    //if (href.Contains("wpa.qq.com"))
+                    //    continue;
+
+
+                    try
+                    {
+                        if (href.IndexOf("http") < 0 && href.IndexOf(":") < 0)
+                        {
+                            var newurl = new Uri(new Uri($"{domain.Scheme}://{domain.Host}"), href);
+                            tbx_url.AppendText(newurl.ToString() + "\r\n");
+                        }
+                        else if (href.IndexOf("http") == 0)
+                        {
+                            var newurl = new Uri(href);
+                            if (newurl.Host == domain.Host)
+                            {
+                                tbx_url.AppendText(newurl.ToString() + "\r\n");
+                            }
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+
+                }
+            }
+        }
+
+        private void btn_repeat_Click(object sender, EventArgs e)
+        {
+           var abc= tbx_url.Lines.Distinct();
+            tbx_url.ResetText();
+            foreach (var item in abc)
+            {
+                tbx_url.AppendText(item+"\r\n");
+            }
+        }
+
+        private async void btn_link2_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.Yes==MessageBox.Show("1,为避免重复访问网站，轮询一般只操作一次、\r\n2,部分网站对访问频率有设置,访问频繁可能有限制\r\n\r\n是否对列表中网址进行二次轮询获得更多网址？", "警告",MessageBoxButtons.YesNo,MessageBoxIcon.Warning))
+            {
+                var links = tbx_url.Lines.Distinct();
+                foreach (var item in links)    
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(item) || item.Length<5)
+                            continue;
+                        
+                        var domain = new Uri(item);
+                        await GetUrlLink(domain);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                MessageBox.Show("轮询完毕,列表数量：" + tbx_url.Lines.Length);
+            }
+        }
+    }
+
+
+    public static class ExControl
+    {
+        static ToolTip toolTip;
+        public static void ShowToolTip(this Control control, string text, string title, ToolTipIcon toolTipIcon)
+        {
+            if (toolTip != null)
+                toolTip.Dispose();
+            toolTip = new ToolTip();
+            //toolTip.IsBalloon = true;
+            toolTip.ToolTipTitle = title;
+            toolTip.ToolTipIcon = toolTipIcon;
+            //toolTip.ShowAlways = true;
+            //toolTip.SetToolTip(control, text);
+            //var _mousePoint = Control.MousePosition;
+            //int _x = control.PointToClient(_mousePoint).X;
+            //int _y = control.PointToClient(_mousePoint).Y;
+            //toolTip.Show(text, control, _x, _y);
+            toolTip.Show(text, control);
         }
     }
 }

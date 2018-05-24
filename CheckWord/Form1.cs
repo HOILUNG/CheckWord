@@ -26,7 +26,7 @@ namespace CheckWord
         private async void button1_Click(object sender, EventArgs e)
         {
             
-            var list = tbx_url.Lines.Where(m=>m.Contains("http:")).ToList();
+            var list = tbx_url.Lines.Where(m=>m.IndexOf("http")==0).ToList();
             if(list.Count<1)
             {                
                 tbx_url.ShowToolTip("需要输入完整网址请参考实例！（每行一条）", "提示", ToolTipIcon.Info);
@@ -135,7 +135,7 @@ namespace CheckWord
             {
                 try
                 {
-                    if (!host.Contains("http://"))
+                    if (host.IndexOf("http")<0)
                    {
                         host = "http://" + host;
                     }                    
@@ -152,9 +152,25 @@ namespace CheckWord
                     httpClient.DefaultRequestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
                     httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36");
 
+
+                    
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Head, requurl);
+                    var headrequest=await httpClient.SendAsync(httpRequestMessage);                   
+                    if (headrequest.IsSuccessStatusCode&& !headrequest.Content.Headers.ContentType.MediaType.Contains("text/html"))
+                    {
+                        return null;
+                    }
+
+                    
                     rsp = await httpClient.GetAsync("");
                     if (!rsp.IsSuccessStatusCode)
                         return null;
+                    if (!rsp.Content.Headers.ContentType.MediaType.Contains("text/html"))
+                    {
+                        return null; 
+                    }
+                    
+                    
                 }
                 catch (Exception ex)
                 {
@@ -229,6 +245,12 @@ namespace CheckWord
                     var href = node.GetAttributeValue("href", "");
                     if (href == string.Empty)
                         continue;
+                    //if (href.IndexOf(".pdf") > 0)
+                    //    continue;
+                    //if (href.IndexOf(".jpg") > 0)
+                    //    continue;
+                    //if (href.IndexOf(".png") > 0)
+                    //    continue;
                     //if (href.Contains("miibeian.gov.cn"))
                     //    continue;
                     //if (href.Contains("beian.gov.cn"))
@@ -239,6 +261,8 @@ namespace CheckWord
 
                     try
                     {
+                        
+
                         if (href.IndexOf("http") < 0 && href.IndexOf(":") < 0)
                         {
                             var newurl = new Uri(new Uri($"{domain.Scheme}://{domain.Host}"), href);

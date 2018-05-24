@@ -82,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(10, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 12);
             this.label1.TabIndex = 3;
@@ -223,7 +223,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(10, 552);
+            this.label5.Location = new System.Drawing.Point(10, 556);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(557, 12);
             this.label5.TabIndex = 16;
@@ -232,11 +232,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 580);
+            this.label6.Location = new System.Drawing.Point(10, 578);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(701, 12);
+            this.label6.Size = new System.Drawing.Size(743, 12);
             this.label6.TabIndex = 17;
-            this.label6.Text = "常见问题：获取列表失败，请重试或用浏览器打开网站是否正常；部分服务器对网站访问频率有限制，同一IP请勿频繁或间隔访问。";
+            this.label6.Text = "常见问题：若5秒内获取列表失败，请重试或用浏览器打开网站是否正常；部分服务器对网站访问频率有限制，同一IP请勿频繁或间隔访问。";
             // 
             // Form1
             // 

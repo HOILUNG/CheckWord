@@ -200,7 +200,7 @@
             // btn_link2
             // 
             this.btn_link2.ForeColor = System.Drawing.Color.Red;
-            this.btn_link2.Location = new System.Drawing.Point(882, 245);
+            this.btn_link2.Location = new System.Drawing.Point(879, 242);
             this.btn_link2.Name = "btn_link2";
             this.btn_link2.Size = new System.Drawing.Size(75, 23);
             this.btn_link2.TabIndex = 14;

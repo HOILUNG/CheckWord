@@ -76,7 +76,7 @@ namespace CheckWord
                     System.IO.File.AppendAllText("log.txt", ex.Message);
                 }
             }
-            MessageBox.Show("全部检测完毕,列表数量："+tbx_result.Lines.Length);
+            MessageBox.Show("全部检测完毕,列表数量："+tbx_result.Lines.Length,"提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
 
         }
@@ -217,7 +217,7 @@ namespace CheckWord
                 var domain = new Uri(tbx_domain.Text);
 
                 await GetUrlLink(domain);
-                MessageBox.Show("获取网站链接完毕,列表数量：" + tbx_url.Lines.Length);
+                MessageBox.Show("获取网站链接完毕,列表数量：" + tbx_url.Lines.Length,"提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
@@ -245,20 +245,7 @@ namespace CheckWord
                     var href = node.GetAttributeValue("href", "");
                     if (href == string.Empty)
                         continue;
-                    //if (href.IndexOf(".pdf") > 0)
-                    //    continue;
-                    //if (href.IndexOf(".jpg") > 0)
-                    //    continue;
-                    //if (href.IndexOf(".png") > 0)
-                    //    continue;
-                    //if (href.Contains("miibeian.gov.cn"))
-                    //    continue;
-                    //if (href.Contains("beian.gov.cn"))
-                    //    continue;
-                    //if (href.Contains("wpa.qq.com"))
-                    //    continue;
-
-
+                
                     try
                     {
                         
@@ -317,7 +304,7 @@ namespace CheckWord
                     {
                     }
                 }
-                MessageBox.Show("轮询完毕,列表数量：" + tbx_url.Lines.Length);
+                MessageBox.Show("轮询完毕,列表数量：" + tbx_url.Lines.Length,"提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -330,6 +317,70 @@ namespace CheckWord
             MessageBox.Show("当前词汇列表已经覆盖为最新内容","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
         }
+
+        private void btn_txt_Click(object sender, EventArgs e)
+        {
+            
+            if (tbx_txt.Text.Length < 1)
+            {
+                tbx_txt.ShowToolTip("请填写要检测的文本内容", "提示", ToolTipIcon.Info);
+                return;
+            }
+            else if (tbx_word.Text.Trim().Length < 2)
+            {
+                tbx_word.ShowToolTip("需要填写词汇列表！（每行一条）", "提示", ToolTipIcon.Info);
+                return;
+            }
+
+            listbox_txt_result.Items.Clear();
+            var word = tbx_word.Text.Split(new[] { "、", ",", "(", ")", "（", "）", "|", " ", "”", "“", "。", "：", "/", "-", "—", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).OrderByDescending(m => m.Length).Select(m => m.Trim()).Distinct(); ;
+            var sb = new StringBuilder();
+            foreach (var item in word)
+            {
+                sb.Append(item + "|");
+            }
+
+            var regex = new Regex(sb.ToString(0, sb.Length - 1));
+            var rm = regex.Matches(tbx_txt.Text);            
+            if (rm.Count > 0)
+            {
+                foreach (Match r in rm)
+                {
+                    if(!listbox_txt_result.Items.Contains(r.Value))
+                        listbox_txt_result.Items.Add(r.Value);
+                }
+                listbox_txt_result.SelectedIndex = 0;
+            }
+            MessageBox.Show($"检测本内容完毕，结果数量为：{listbox_txt_result.Items.Count}", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void listbox_txt_result_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var val = listbox_txt_result.SelectedItem.ToString();
+            if (val != null)
+            {
+                try
+                {
+                    tbx_txt.Focus();
+
+                    var start = tbx_txt.Text.IndexOf(val);
+                    if(start<0)
+                    {
+                        tbx_txt.ShowToolTip("没有找到对应内容","提示",ToolTipIcon.Info);
+                        return;
+                    }
+                    tbx_txt.SelectionStart = start;
+                    tbx_txt.SelectionLength = val.Length;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+
+
     }
 
 

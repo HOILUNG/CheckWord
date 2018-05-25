@@ -18,7 +18,7 @@ namespace CheckWord
             InitializeComponent();
             tbx_word.Text = Properties.Resources.String1.Replace("、","\r\n") ;
             this.Text = string.Format("{0} {1}", this.ProductName, this.ProductVersion);
-            
+            tabControl1.Dock = DockStyle.Fill;
             
         }
 
@@ -319,6 +319,16 @@ namespace CheckWord
                 }
                 MessageBox.Show("轮询完毕,列表数量：" + tbx_url.Lines.Length);
             }
+        }
+
+        private void lb_update_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WebClient webClient = new WebClient();            
+            var adword= webClient.DownloadString("http://update.soupv.com/newupdate/adword.txt");
+            tbx_word.ResetText();
+            tbx_word.Text = adword;
+            MessageBox.Show("当前词汇列表已经覆盖为最新内容","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
         }
     }
 

@@ -311,7 +311,7 @@ namespace CheckWord
         private void lb_update_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             WebClient webClient = new WebClient();            
-            var adword= webClient.DownloadString("http://update.soupv.com/newupdate/adword.txt");
+            var adword= webClient.DownloadString("https://raw.githubusercontent.com/HOILUNG/CheckWord/master/AdWord.txt");
             tbx_word.ResetText();
             tbx_word.Text = adword;
             MessageBox.Show("当前词汇列表已经覆盖为最新内容","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);

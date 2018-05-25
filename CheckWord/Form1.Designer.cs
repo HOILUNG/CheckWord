@@ -330,10 +330,10 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(24, 21);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(629, 72);
+            this.label7.Size = new System.Drawing.Size(605, 72);
             this.label7.TabIndex = 0;
             this.label7.Text = "\r\n因为滥用广告词，夸大产品的真实性，误导消费者，为保障消费者权益。\r\n\r\n国家2016正式实施了被商家号称史上最严的新广告法,新广告法对明星代言,虚假广告,极限" +
-    "用词等都作了规定。\r\n\r\n相关信息可通过搜索引擎了解详情，大家在做宣传写文案做详情，主图文字等一定要注意，不要一不小心就被罚款了。";
+    "用词等都作了规定。\r\n\r\n相关信息可通过搜索引擎了解详情，大家在做宣传写文案做详情，主图文字等一定要注意，否则可能会受到处罚。";
             // 
             // label8
             // 

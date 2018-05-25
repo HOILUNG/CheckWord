@@ -310,7 +310,8 @@ namespace CheckWord
 
         private void lb_update_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            WebClient webClient = new WebClient();            
+            WebClient webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
             var adword= webClient.DownloadString("https://raw.githubusercontent.com/HOILUNG/CheckWord/master/AdWord.txt");
             tbx_word.ResetText();
             tbx_word.Text = adword;
